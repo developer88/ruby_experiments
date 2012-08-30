@@ -1,0 +1,18 @@
+# coding: utf-8
+require './crawler'
+class LentaCrawler  < Crawler
+
+	def parse_item(url)
+		return nil if url.size == 0
+		url = "http://lenta.ru/news/2012/08/30/kvasha/"
+		doc = Nokogiri::HTML(open(url))
+		puts url
+		#puts doc.css("td.statya").each do |td|
+		#	td.inspect
+
+			#puts i.inspect
+		#end
+		puts doc
+	end
+	
+end
