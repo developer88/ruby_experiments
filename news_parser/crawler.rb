@@ -19,7 +19,7 @@ class Crawler
 
 	def parse_rss(count, url)
 		raise "No url provided" if url.length == 0
-		rss = Nokogiri::XML(open('http://www.thevista.ru/rss.php'))
+		rss = Nokogiri::XML(open(url))
 		rss.css("item").each_with_index do |n,i|
 			parse_item(n.search("link").inner_text, n.search("pubDate").inner_text, n.search("title").inner_text)
 			break if i+1 == count

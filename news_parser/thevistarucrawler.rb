@@ -3,7 +3,7 @@ require './crawler'
 class TheVistaRuCrawler < Crawler
 
 	def initialize(count)
-		@url = "'http://www.thevista.ru/rss.php'"
+		@url = "http://www.thevista.ru/rss.php"
 		super
 	end
 
