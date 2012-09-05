@@ -3,16 +3,20 @@ require "./lentacrawler.rb"
 require "./thevistarucrawler.rb"
 require './crawler'
 class Parser
+	@news_count = 5
+	@crawler = ""
 
-	def initialize(news_count = 5)
+	def initialize(news_count, parser)
+		raise "Undefined news count variable" unless news_count.to_i > 0
+		raise "Undefined parser variable" if parser.size == 0
 		@news_count = news_count
+		@crawler = crawler(parser)
+		raise "Parser not found" unless @crawler 
 	end
 
 	def parse
-		#crawler = LentaCrawler.new
-		#'http://lenta.ru/rss/'
-		crawler = TheVistaRuCrawler.new
-		return crawler.crawl_for_items(@news_count, "'http://www.thevista.ru/rss.php'")
+		crawler = Object::const_get(@crawler).new(@news_count)
+		return crawler.crawl_for_items
 	end
 
 	def self.display(items)
@@ -28,4 +32,12 @@ class Parser
 			puts "=="
 		end
 	end
+
+    private
+
+    def crawler(parser_sym)
+    	crawlers = {thevistaru:"TheVistaRuCrawler",lentaru:"LentaCrawler"}
+    	crawlers[parser_sym.to_sym]
+    end	
+
 end

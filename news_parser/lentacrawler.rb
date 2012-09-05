@@ -1,6 +1,11 @@
 # coding: utf-8
 require './crawler'
 class LentaCrawler  < Crawler
+	
+	def initialize(count)
+		@url = 'http://lenta.ru/rss/'
+		super
+	end
 
 	def parse_item(url)
 		return nil if url.size == 0

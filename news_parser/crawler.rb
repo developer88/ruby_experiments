@@ -3,14 +3,16 @@ require 'open-uri'
 require 'nokogiri'
 require "./item"
 class Crawler
+	@count = 5
 
-	def initialize
+	def initialize(count)
+		@count = count.to_i > 0 ? count.to_i : 5 
 		@items = []
 	end
 
-	def crawl_for_items(count, url)
-		raise "count variable is empty" unless count > 0
-		parse_rss(count, url)
+	def crawl_for_items
+		raise "url variable is empty" if @url.size == 0
+		parse_rss(@count, @url)
 	end
 
 	private
