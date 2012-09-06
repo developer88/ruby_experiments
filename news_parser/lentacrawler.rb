@@ -4,6 +4,8 @@ class LentaCrawler  < Crawler
 	
 	def initialize(count)
 		@url = 'http://lenta.ru/rss/'
+		@fromencoding = "Windows-1251"
+		@referer = "http://www.lenta.ru/"		
 		super
 	end
 
@@ -18,6 +20,7 @@ class LentaCrawler  < Crawler
 			#puts i.inspect
 		#end
 		puts doc
+		raise ""
 	end
 	
 end
