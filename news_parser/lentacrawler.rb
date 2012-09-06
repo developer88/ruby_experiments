@@ -9,18 +9,14 @@ class LentaCrawler  < Crawler
 		super
 	end
 
-	def parse_item(url)
+	def parse_item(url, date, title)
 		return nil if url.size == 0
-		url = "http://lenta.ru/news/2012/08/30/kvasha/"
-		doc = Nokogiri::HTML(open(url))
+		#url = "http://lenta.ru/news/2012/08/30/kvasha/"
+		doc = Nokogiri::HTML(get_page_content(url))	
 		puts url
-		#puts doc.css("td.statya").each do |td|
-		#	td.inspect
-
-			#puts i.inspect
-		#end
+		puts doc.search("#pacman").inner_html
 		puts doc
-		raise ""
+		raise "sdfasdfasd"
 	end
 	
 end
