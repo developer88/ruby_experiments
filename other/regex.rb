@@ -37,6 +37,13 @@ action.call("the second line")
 example.call
 text.call(TEXT3)
 
+action.call("get all link's content")
+action.call("get onclick content")
+action.call("get all html objects with 'email' class")
+action.call("find a phone number")
+action.call("find an email")
+action.call("removed 'style' params")
+
 #TEXT 4
 
 example.call
