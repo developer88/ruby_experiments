@@ -1,6 +1,7 @@
 example = lambda { puts "=====================\n\n" } # old syntax
-text = ->(t){ puts "Let's say we have a text = '#{t}'." } # 1.9 syntax
-action = ->(a){ puts "I'd like to get '#{a}':"}
+text = ->(t){ puts "Let's say we have a text '#{t}'." } # 1.9 syntax
+action = ->(a){ puts "I'd like to get '#{a}'"} # 1.9 syntax
+result = lambda {|r| puts "and result is: #{r}" } # old syntax 
 
 puts "Working with regex"
 puts "====="
@@ -19,12 +20,41 @@ TEXT5 = "steve@bulmer.com"
 
 text.call(TEXT1)
 
-
-
-
-
+action.call("number of syster's house e.g 21")
+action.call("full address without any other text, e.g Moscow, Russia, Lenina 21")
+action.call("get all 's'")
+action.call("replace 'i' with 'M'")
 
 #TEXT 2
 
 example.call
+text.call(TEXT2)
+
+action.call("the second line")
+
+#TEXT 3
+
+example.call
+text.call(TEXT3)
+
+#TEXT 4
+
+example.call
+text.call(TEXT4)
+
+action.call("http")
+action.call("delete http://")
+action.call("replace http with https")
+action.call("remove www")
+action.call("site name e.g. google")
+action.call("domain")
+
+#TEXT 5
+
+example.call
+text.call(TEXT5)
+
+action.call("everything before '@'")
+action.call("everything after '@'")
+action.call("domain")
 
