@@ -1,12 +1,12 @@
 example = lambda { puts "=====================\n\n" } # old syntax
 text = ->(t){ puts "Let's say we have a text '#{t}'." } # 1.9 syntax
 action = ->(a){ puts "I'd like to get '#{a}'"} # 1.9 syntax
-result = lambda {|r| puts "and result is: #{r}" } # old syntax 
+result = lambda {|r,regex| puts "and result is '#{r}' with regex '#{regex}'" } # old syntax 
 
 puts "Working with regex"
 puts "====="
 
-TEXT1 = "My syster lives in Moscow, Russia at Lenina st. 21."
+TEXT1 = "My syster's adress is Moscow, Russia at Lenina st. 21."
 TEXT2 = "That is more complex text\n that the previous one\n\r because of special characters."
 TEXT3 = "Just <b>an ordinary</b> html markup with 
          <div style='text-decoration:none;'>phone number <a href='#'>+7 987 744-3322</a></div>
@@ -21,8 +21,10 @@ TEXT5 = "steve@bulmer.com"
 text.call(TEXT1)
 
 action.call("number of syster's house e.g 21")
+result.call(TEXT1.match(/\d+/),"/\d+/")
 action.call("full address without any other text, e.g Moscow, Russia, Lenina 21")
-action.call("get all 's'")
+action.call("get all 's' count e.g. 10")
+result.call(TEXT1.match(/[s]+/),"/[s]+/")
 action.call("replace 'i' with 'M'")
 
 #TEXT 2
@@ -62,6 +64,10 @@ example.call
 text.call(TEXT5)
 
 action.call("everything before '@'")
+result.call(TEXT5.match(/^\w+/),"/^\w+/")
+result.call(TEXT5.match(/^.?[^@]+/),"/^.?[^@]+/")
 action.call("everything after '@'")
+result.call(TEXT5.match(/[^@]+$/),"/[^@]+$/")
 action.call("domain")
+result.call(TEXT5[/[^\.]+$/],"/[^\.]+$/")
 
