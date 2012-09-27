@@ -23,9 +23,12 @@ text.call(TEXT1)
 action.call("number of syster's house e.g 21")
 result.call(TEXT1.match(/\d+/),"/\d+/")
 action.call("full address without any other text, e.g Moscow, Russia, Lenina 21")
+result1 = TEXT1.match(/(?<city>\w+)\S\s(?<country>\w+)\sat\s(?<street>\w+)\sst\D+(?<house>\d+)\.$/)
+result.call("#{result1[:city]}, #{result1[:country]}, #{result1[:street]} #{result1[:house]}","/(?<city>\w+)\S\s(?<country>\w+)\sat\s(?<street>\w+)\sst\D+(?<house>\d+)\.$/")
 action.call("get all 's' count e.g. 10")
-result.call(TEXT1.match(/[s]+/),"/[s]+/")
+result.call(TEXT1.scan(/[s]/).size,"/[s]/")
 action.call("replace 'i' with 'M'")
+result.call(TEXT1.gsub(/i/,"M"),"/i/")
 
 #TEXT 2
 
