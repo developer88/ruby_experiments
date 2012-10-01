@@ -42,8 +42,12 @@ action.call("the second line")
 example.call
 text.call(TEXT3)
 
+action.call("get all link's tags")
+result.call(TEXT3.scan(/<a.+a>/),"/<a.+a>/")
 action.call("get all link's content")
+result.call(TEXT3.scan(/<a.+>(.*)<\/a>/),"/<a.+>(.*)<\/a>/")
 action.call("get onclick content")
+result.call(/(onclick=)(?<onclick>'.+')[\s]/.match(TEXT3)[:onclick],"/(onclick=)(?<onclick>'.+')[\s]/")
 action.call("get all html objects with 'email' class")
 action.call("find a phone number")
 action.call("find an email")
@@ -55,11 +59,15 @@ example.call
 text.call(TEXT4)
 
 action.call("http")
+result.call(TEXT4[/^[^:]+/],"/^[^:]+/")
 action.call("delete http://")
-action.call("replace http with https")
+result.call(TEXT4.gsub(/^.+[\/]+/,""),"/^.+[\/]+/")
 action.call("remove www")
+result.call(TEXT4.gsub(/[w]{3}\./,""),"/[w]{3}\./")
 action.call("site name e.g. google")
+result.call(TEXT4.match(/\.(\w*)\./)[1],"/\.(\w*)\./")
 action.call("domain")
+result.call(TEXT4.match(/\w+$/),"/\w+$/")
 
 #TEXT 5
 
