@@ -36,6 +36,7 @@ example.call
 text.call(TEXT2)
 
 action.call("the second line")
+result.call(TEXT2.match(/\n(.+)\n/)[1],'/\n(.+)\n/')
 
 #TEXT 3
 
@@ -49,9 +50,13 @@ result.call(TEXT3.scan(/<a.+>(.*)<\/a>/),"/<a.+>(.*)<\/a>/")
 action.call("get onclick content")
 result.call(/(onclick=)(?<onclick>'.+')[\s]/.match(TEXT3)[:onclick],"/(onclick=)(?<onclick>'.+')[\s]/")
 action.call("get all html objects with 'email' class")
+result.call(/(<.+class='email'.+>)/.match(TEXT3),"/(<.+class='email'.+>)/")
 action.call("find a phone number")
+result.call(TEXT3.match(/(\+.+\b)</)[1],"/(\+.+\b)</")
 action.call("find an email")
+result.call(TEXT3.match(/emailto:(.+)'/)[1],"/emailto:(.+)'/")
 action.call("removed 'style' params")
+result.call(TEXT3.gsub(/\s?style.?'.+;'/,""),"/\s?style.?'.+;'/")
 
 #TEXT 4
 
