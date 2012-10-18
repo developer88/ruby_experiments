@@ -43,13 +43,16 @@ class Crawler
 	def get_page_content(url)
 	    begin
 	    	return open(URI.parse(url),
-              'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:5.0) Gecko/20100101 Firefox/5.0',
-              'Accept' => '	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-              'Accept-Language' => 'ru-ru,ru;q=0.8,en-us;q=0.5,en;q=0.3',
+              'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',
+              'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              'Accept-Language' => 'en-US,en;q=0.8',
               'Accept-Charset' => 'utf-8;q=0.7,*;q=0.7',
-              'Referer' => @referer)
-  		#rescue Exception => e
-      	#	return nil
+              'Referer' => @referer,
+              'Host' => @host,
+              "Cache-Control" => "max-age=0",
+              "Connection" => "keep-alive")
+  		rescue Exception => e
+      		return nil
       	end
 	end
 
